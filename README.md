@@ -82,9 +82,9 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 ### ANTES DE COMEÇAR A DESENVOLVER
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-013-b-project-zoo-functions-rubric.git`.
+  * `git clone https://github.com/tryber/sd-013-b-project-zoo-functions.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-013-b-project-zoo-functions-rubric`
+    * `cd sd-013-b-project-zoo-functions`
 
 2. Instale as dependências
   * `npm install`
