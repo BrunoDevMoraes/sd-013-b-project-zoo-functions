@@ -11,12 +11,20 @@ function getSpeciesByIds(...ids) {
 // console.log(getSpeciesByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function getAnimalsOlderThan(animal, age) {
-  // seu código aqui
 }
 
 function getEmployeeByName(employeeName) {
-  // seu código aqui
+  const { employees } = data;
+  if (typeof employeeName !== 'string') {
+    return {};
+  }
+  const wantedEmployee = employees.find((employee) =>
+    employee.firstName === employeeName || employee.lastName === employeeName);
+
+  return wantedEmployee;
 }
+
+console.log(getEmployeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
