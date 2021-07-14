@@ -11,6 +11,7 @@ function getSpeciesByIds(...ids) {
 // console.log(getSpeciesByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function getAnimalsOlderThan(animal, age) {
+  // seu código aqui
 }
 
 function getEmployeeByName(employeeName) {
@@ -31,7 +32,13 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const { employees } = data;
+  const rq = employees.find((employee) =>
+    employee.id === id);
+  if (rq.firstName === 'Stephanie' || rq.firstName === 'Ola' || rq.firstName === 'Burl') {
+    return true;
+  }
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
