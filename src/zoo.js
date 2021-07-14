@@ -25,8 +25,6 @@ function getEmployeeByName(employeeName) {
   return wantedEmployee;
 }
 
-console.log(getEmployeeByName());
-
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
@@ -45,8 +43,21 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
-function countAnimals(species) {
-  // seu código aqui
+function countAnimals(target) {
+  const { species } = data;
+  if (typeof target === 'string') {
+    const animal = species.find((specie) => specie.name === target);
+    return animal.residents.length;
+  }
+  if (typeof target === 'undefined') {
+    const allAnimals = {};
+    species.forEach((specie) => {
+      const animalName = specie.name;
+      const animalQuantity = specie.residents.length;
+      allAnimals[`${animalName}`] = animalQuantity;
+    });
+    return allAnimals;
+  }
 }
 
 function calculateEntry(entrants) {
@@ -62,8 +73,13 @@ function getSchedule(dayName) {
 }
 
 function getOldestFromFirstSpecies(id) {
-  // seu código aqui
+  // const { species } = data;
+  const { employees } = data;
+  const wantedEmployee = employees.find((employee) => employee.id === id);
+  console.log(wantedEmployee);
 }
+
+getOldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1');
 
 function increasePrices(percentage) {
   // seu código aqui
