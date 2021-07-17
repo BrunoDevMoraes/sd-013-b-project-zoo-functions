@@ -1,8 +1,10 @@
 const data = require('./data');
 
+const { species } = data;
+const { employees } = data;
+
 // First commit
 function getSpeciesByIds(...ids) {
-  const { species } = data;
   const arrayReturned = [];
   ids.forEach((id) => arrayReturned.push(species.find((specie) => specie.id === id)));
   return arrayReturned;
@@ -15,7 +17,6 @@ function getAnimalsOlderThan(animal, age) {
 }
 
 function getEmployeeByName(employeeName) {
-  const { employees } = data;
   if (typeof employeeName !== 'string') {
     return {};
   }
@@ -30,7 +31,6 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const { employees } = data;
   const rq = employees.find((employee) =>
     employee.id === id);
   if (rq.firstName === 'Stephanie' || rq.firstName === 'Ola' || rq.firstName === 'Burl') {
@@ -44,7 +44,6 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function countAnimals(target) {
-  const { species } = data;
   if (typeof target === 'string') {
     const animal = species.find((specie) => specie.name === target);
     return animal.residents.length;
@@ -73,8 +72,6 @@ function getSchedule(dayName) {
 }
 
 function getOldestFromFirstSpecies(id) {
-  const { species } = data;
-  const { employees } = data;
   const wantedEmployee = employees.find((employee) => employee.id === id);
   const firstAnimalId = wantedEmployee.responsibleFor[0];
   const wantedSpecie = species.find((specie) => specie.id === firstAnimalId);
@@ -90,14 +87,39 @@ function getOldestFromFirstSpecies(id) {
   return topics;
 }
 
-console.log(getOldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-
 function increasePrices(percentage) {
   // seu código aqui
 }
 
+function returnAllEmployees() {
+  const allEmployees = {};
+  employees.forEach((employee) => {
+    const responsabilities = employee.responsibleFor;
+    responsabilities.forEach((responsability, index) => {
+      species.forEach((specie) => {
+        let animalName;
+        if (specie.id === responsability) {
+          animalName = specie.name;
+          responsabilities[index] = animalName;
+        }
+      });
+    });
+    allEmployees[`${employee.firstName} ${employee.lastName}`] = responsabilities;
+  });
+  return allEmployees;
+}
 function getEmployeeCoverage(idOrName) {
-  // seu código aqui
+  if (typeof idOrName === 'undefined') return returnAllEmployees();
+  const wantedEmployee = employees
+    .find((employee) => {
+      const a = employee.firstName;
+      const b = employee.lastName;
+      const c = employee.id;
+      return a === idOrName || b === idOrName || c === idOrName;
+    });
+  const employeeName = `${wantedEmployee.firstName} ${wantedEmployee.lastName}`;
+  const allEmployees = returnAllEmployees();
+  return { [`${employeeName}`]: allEmployees[`${employeeName}`] };
 }
 
 module.exports = {
