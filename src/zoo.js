@@ -111,8 +111,8 @@ function transformSchedule() {
   const weekDaysNames = Object.keys(hours);
   const openClose = Object.values(hours);
   const schedule = {};
-  weekDaysNames.forEach((day, index) => {
-    schedule[`${day}`] = `Open from ${openClose[index].open}am until ${(openClose[index].close) - 12}pm`;
+  weekDaysNames.forEach((day, i) => {
+    schedule[`${day}`] = `Open from ${openClose[i].open}am until ${(openClose[i].close) - 12}pm`;
   });
   schedule.Monday = 'CLOSED';
   return schedule;
