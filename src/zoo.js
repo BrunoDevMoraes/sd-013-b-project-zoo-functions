@@ -29,7 +29,19 @@ function getEmployeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const { id } = personalInfo;
+  const { firstName } = personalInfo;
+  const { lastName } = personalInfo;
+  const { managers } = associatedWith;
+  const { responsibleFor } = associatedWith;
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return newEmployee;
 }
 
 function isManager(id) {
