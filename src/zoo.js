@@ -87,8 +87,17 @@ function countAnimals(target) {
 }
 
 // Requisito 8
+function returnPrice(entrants) {
+  const adults = entrants.Adult === undefined ? 0 : entrants.Adult;
+  const childs = entrants.Child === undefined ? 0 : entrants.Child;
+  const seniors = entrants.Senior === undefined ? 0 : entrants.Senior;
+  return (adults * 49.99) + (childs * 20.99) + (seniors * 24.99);
+}
 function calculateEntry(entrants) {
-  // seu código aqui
+  if (entrants === undefined) return 0;
+  const entrantsKeys = Object.keys(entrants);
+  if (entrantsKeys.length === 0) return 0;
+  return returnPrice(entrants);
 }
 
 // Requisito 9
