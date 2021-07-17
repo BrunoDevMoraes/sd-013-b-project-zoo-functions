@@ -3,6 +3,7 @@ const data = require('./data');
 const { species } = data;
 const { employees } = data;
 const { hours } = data;
+const { prices } = data;
 
 // Requisito 1
 function getSpeciesByIds(...ids) {
@@ -140,9 +141,16 @@ function getOldestFromFirstSpecies(id) {
   return topics;
 }
 
-// Requisito 12;
+// Requisito 12 Peguei o arredondamento aqui (https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary)
 function increasePrices(percentage) {
-  // seu código aqui
+  prices.Adult *= ((percentage / 100) + 1);
+  prices.Adult = Math.round((prices.Adult + Number.EPSILON) * 100) / 100;
+
+  prices.Child *= ((percentage / 100) + 1);
+  prices.Child = Math.round((prices.Child + Number.EPSILON) * 100) / 100;
+
+  prices.Senior *= ((percentage / 100) + 1);
+  prices.Senior = Math.round((prices.Senior + Number.EPSILON) * 100) / 100;
 }
 
 // Requisito 13
