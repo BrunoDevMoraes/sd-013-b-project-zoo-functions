@@ -3,13 +3,14 @@ const data = require('./data');
 const { species } = data;
 const { employees } = data;
 
-// First commit
+// Requisito 1
 function getSpeciesByIds(...ids) {
   const arrayReturned = [];
   ids.forEach((id) => arrayReturned.push(species.find((specie) => specie.id === id)));
   return arrayReturned;
 }
 
+// Requisito 2
 function getAnimalsOlderThan(animal, age) {
   const wantedSpecie = species.find((specie) => specie.name === animal);
   const { residents } = wantedSpecie;
@@ -18,6 +19,7 @@ function getAnimalsOlderThan(animal, age) {
   return false;
 }
 
+// Requisito 3
 function getEmployeeByName(employeeName) {
   if (typeof employeeName !== 'string') {
     return {};
@@ -28,6 +30,7 @@ function getEmployeeByName(employeeName) {
   return wantedEmployee;
 }
 
+// Requisito 4
 function createEmployee(personalInfo, associatedWith) {
   const { id } = personalInfo;
   const { firstName } = personalInfo;
@@ -44,6 +47,7 @@ function createEmployee(personalInfo, associatedWith) {
   return newEmployee;
 }
 
+// Requisito 5
 function isManager(id) {
   const rq = employees.find((employee) =>
     employee.id === id);
@@ -53,10 +57,19 @@ function isManager(id) {
   return false;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+// Requisito 6
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(newEmployee);
 }
 
+// Requisito 7
 function countAnimals(target) {
   if (typeof target === 'string') {
     const animal = species.find((specie) => specie.name === target);
@@ -73,18 +86,22 @@ function countAnimals(target) {
   }
 }
 
+// Requisito 8
 function calculateEntry(entrants) {
   // seu código aqui
 }
 
+// Requisito 9
 function getAnimalMap(options) {
   // seu código aqui
 }
 
+// Requisito 10
 function getSchedule(dayName) {
   // seu código aqui
 }
 
+// Requisito 11
 function getOldestFromFirstSpecies(id) {
   const wantedEmployee = employees.find((employee) => employee.id === id);
   const firstAnimalId = wantedEmployee.responsibleFor[0];
@@ -101,10 +118,12 @@ function getOldestFromFirstSpecies(id) {
   return topics;
 }
 
+// Requisito 12;
 function increasePrices(percentage) {
   // seu código aqui
 }
 
+// Requisito 13
 function returnAllEmployees() {
   const allEmployees = {};
   employees.forEach((employee) => {
