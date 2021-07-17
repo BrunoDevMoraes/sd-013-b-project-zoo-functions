@@ -2,6 +2,7 @@ const data = require('./data');
 
 const { species } = data;
 const { employees } = data;
+const { hours } = data;
 
 // Requisito 1
 function getSpeciesByIds(...ids) {
@@ -106,10 +107,22 @@ function getAnimalMap(options) {
 }
 
 // Requisito 10
-function getSchedule(dayName) {
-  // seu código aqui
+function transformSchedule() {
+  const weekDaysNames = Object.keys(hours);
+  const openClose = Object.values(hours);
+  const schedule = {};
+  weekDaysNames.forEach((day, index) => {
+    schedule[`${day}`] = `Open from ${openClose[index].open}am until ${(openClose[index].close) - 12}pm`;
+  });
+  schedule.Monday = 'CLOSED';
+  return schedule;
 }
 
+function getSchedule(dayName) {
+  const schedule = transformSchedule();
+  if (dayName === undefined) return schedule;
+  return { [`${dayName}`]: schedule[`${dayName}`] };
+}
 // Requisito 11
 function getOldestFromFirstSpecies(id) {
   const wantedEmployee = employees.find((employee) => employee.id === id);
